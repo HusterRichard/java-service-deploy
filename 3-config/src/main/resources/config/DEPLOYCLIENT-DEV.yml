@@ -1,0 +1,15 @@
+eureka:
+  instance:
+    hostname: 127.0.0.1
+    perferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:7000/eureka/
+    healthcheck:
+      enabled: true
+            
+Info:
+  app:
+    name: I am deploy client
+    description: hehe
+    version: 1.0

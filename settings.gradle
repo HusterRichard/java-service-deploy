@@ -1,0 +1,5 @@
+include "1-fw"
+include "2-registry"
+include "3-config"
+include "4-deploy-server"
+include "5-deploy-client"

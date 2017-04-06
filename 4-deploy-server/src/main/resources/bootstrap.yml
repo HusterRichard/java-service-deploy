@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: DEPLOYSERVER
+  cloud:
+    config:
+      uri: http://localhost:7001
+      profile: DEV

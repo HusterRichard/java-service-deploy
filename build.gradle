@@ -1,0 +1,86 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'org.springframework.boot'
+	dependencyManagement {
+		imports {
+			//mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.RELEASE"
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR2"
+		}
+	}
+	bootRepackage {
+		enabled = false
+	}
+	compileTestJava{
+		enabled = false
+	}
+	processTestResources{
+		enabled = false
+	}
+	testClasses{
+		enabled = false
+	}
+	test {
+		enabled = false
+	}
+	
+	
+	jar {
+		version = '1.0.0'
+	}
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	
+	eclipse {
+	  jdt {
+		sourceCompatibility = 1.8
+		targetCompatibility = 1.8
+
+		file {
+		  File dir = file('.settings')
+		  dir.mkdirs()
+
+		  File f = file('.settings/org.eclipse.core.resources.prefs')
+		  f.write('eclipse.preferences.version=1\n')
+		  f.append('encoding/<project>=utf-8')
+		}
+	  }
+	}
+
+	repositories {
+		mavenCentral()
+	}
+	
+	//TODO:need research
+	apply plugin: 'jacoco'
+	jacoco {
+		toolVersion = "0.7.6.201602180812"
+		reportsDir = file("$buildDir/customJacocoReportDir")
+	}
+	test {
+		jacoco {
+			append = false
+			destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+			classDumpFile = file("$buildDir/jacoco/classpathdumps")
+		}
+	}
+	jacocoTestReport {
+		reports {
+			xml.enabled false
+			csv.enabled false
+			html.destination "${buildDir}/jacoco/html"
+		}
+	}
+}

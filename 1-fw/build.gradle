@@ -1,0 +1,15 @@
+dependencies {
+	compile('org.springframework.cloud:spring-cloud-starter')
+	compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.projectlombok:lombok')
+	compile('commons-io:commons-io:2.4')
+	compile('org.apache.httpcomponents:httpclient:4.3.4')
+	compile('org.jodd:jodd-json:3.7')
+	compile('commons-lang:commons-lang:2.6')
+	compile('org.redisson:redisson:3.3.1')
+	compile('com.github.adyliu:zkclient:2.1.1'){
+		exclude group:'org.slf4j', module:'slf4j-log4j12'
+		exclude group:'log4j',module:'log4j'
+	}
+}

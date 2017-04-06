@@ -1,0 +1,8 @@
+dependencies {
+	compile('org.springframework.cloud:spring-cloud-starter-eureka-server')		
+	compile project(':1-fw')
+}
+bootRepackage {
+	enabled = true
+	mainClass="com.huawei.Application"
+}
